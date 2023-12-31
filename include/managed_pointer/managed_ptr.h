@@ -33,7 +33,6 @@ namespace ManagedPointer {
 
         ~managed_ptr() = default;
 
-        // Extra lovely functionality for untyped base class with type erasure :)
         void* void_ptr() const override { return _ptr.get(); }
 
         void disable_delete() override { _ptr.get_deleter().set_deletes_pointer(false); }
@@ -56,9 +55,10 @@ namespace ManagedPointer {
         T* operator->() const { return _ptr.get(); }
         T& operator*() const { return *_ptr; }
 
-        explicit operator bool() const { return _ptr.get() != nullptr; }
+        explicit operator bool() const override { return _ptr.get() != nullptr; }
 
-        void reset(T* ptr = nullptr) { _ptr.reset(ptr); }
-        void release() { _ptr.release(); }
+        void reset(T* ptr) { _ptr.reset(ptr); }
+        void reset() override { _ptr.reset(nullptr); }
+        void release() override { _ptr.release(); }
     };
 }
