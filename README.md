@@ -100,7 +100,7 @@ tarat_link_libraries(Example PRIVATE managed_pointer::managed_pointer)
         {
             "kind": "git",
             "repository": "https://github.com/MrowrLib/Packages.git",
-            "baseline": "ff1bfbd47fd9552685f931da819ee447c47cbe2f",
+            "baseline": "33d4c8f17da77400ed41f1fd1d79645d3c9c7fc6",
             "packages": [
                 "mrowr-managed-pointer"
             ]
