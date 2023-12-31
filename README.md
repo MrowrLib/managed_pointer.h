@@ -6,7 +6,8 @@
 auto* dog = new Dog("Rover");
 
 // This is simply a unique_ptr
-auto ptr = managed_ptr<Dog>(dog);
+auto ptr = managed_ptr<Dog>(dog);      // like this
+auto ptr = make_managed<Dog>("Rover"); // or like this
 
 // But you can disable deletion of the underlying pointer
 ptr.disable_delete();
