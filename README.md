@@ -13,11 +13,20 @@ auto ptr = make_managed<Dog>("Rover"); // or like this
 ptr.disable_delete();
 ```
 
+## What?
+
+A generic pointer class which can be used to manage the memory ownership of a pointer.
+
+- Non-copyable (_requires move semantics_)
+- Wraps an underlying `unique_ptr`
+- The underlying pointer can be disabled from being deleted
+- Type-erased `untyped_managed_ptr` is also available
+
 ## Table of Contents
 
 - [`#include <managed_pointer.h>`](#include-managed_pointerh)
-  - [Table of Contents](#table-of-contents)
   - [What?](#what)
+  - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
     - [xmake](#xmake)
       - [`xmake.lua`](#xmakelua)
@@ -38,15 +47,6 @@ ptr.disable_delete();
         - [`as<T>()` auto-dereference](#ast-auto-dereference)
   - [License](#license)
 
-
-## What?
-
-A generic pointer class which can be used to manage the memory ownership of a pointer.
-
-- Non-copyable (_requires move semantics_)
-- Wraps an underlying `unique_ptr`
-- The underlying pointer can be disabled from being deleted
-- Type-erased `untyped_managed_ptr` is also available
 
 ## Installation
 
