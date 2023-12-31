@@ -13,6 +13,32 @@ auto ptr = make_managed<Dog>("Rover"); // or like this
 ptr.disable_delete();
 ```
 
+## Table of Contents
+
+- [`#include <managed_pointer.h>`](#include-managed_pointerh)
+  - [Table of Contents](#table-of-contents)
+  - [What?](#what)
+  - [Installation](#installation)
+    - [xmake](#xmake)
+      - [`xmake.lua`](#xmakelua)
+    - [vcpkg](#vcpkg)
+      - [`CMakeLists.txt`](#cmakeliststxt)
+      - [`vcpkg.json`](#vcpkgjson)
+      - [`vcpkg-configuration.json`](#vcpkg-configurationjson)
+  - [Why?](#why)
+  - [How?](#how)
+    - [`managed_ptr<T>`](#managed_ptrt)
+    - [`make_managed<T>(...)`](#make_managedt)
+    - [`disable_delete()` / `enable_delete()`](#disable_delete--enable_delete)
+    - [`set_deletes_pointer(bool)`](#set_deletes_pointerbool)
+    - [`deletes_pointer()`](#deletes_pointer)
+    - [`untyped_managed_ptr`](#untyped_managed_ptr)
+      - [`void_ptr()`](#void_ptr)
+      - [`as<T*>()`](#ast)
+        - [`as<T>()` auto-dereference](#ast-auto-dereference)
+  - [License](#license)
+
+
 ## What?
 
 A generic pointer class which can be used to manage the memory ownership of a pointer.
