@@ -1,9 +1,8 @@
 #pragma once
 
+#include "untyped_managed_ptr_impl.h"
+
 namespace ManagedPointer {
 
-    struct untyped_managed_ptr {
-        virtual ~untyped_managed_ptr() = default;
-        virtual void* void_ptr() const = 0;
-    };
+    using untyped_managed_ptr = untyped_managed_ptr_impl*;
 }

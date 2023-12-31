@@ -2,12 +2,12 @@
 
 #include <memory>
 
-#include "untyped_managed_ptr.h"
+#include "untyped_managed_ptr_impl.h"
 
 namespace ManagedPointer {
 
     template <typename T>
-    class managed_ptr : public untyped_managed_ptr {
+    class managed_ptr : public untyped_managed_ptr_impl {
         class managed_ptr_deleter {
             bool _deletes_pointer = true;
 
@@ -34,13 +34,12 @@ namespace ManagedPointer {
         ~managed_ptr() = default;
 
         // Extra lovely functionality for untyped base class with type erasure :)
-        void*                void_ptr() const override { return _ptr.get(); }
-        untyped_managed_ptr* untyped() const { return this; }
+        void* void_ptr() const override { return _ptr.get(); }
 
-        void disable_delete() { _ptr.get_deleter().set_deletes_pointer(false); }
-        void enable_delete() { _ptr.get_deleter().set_deletes_pointer(true); }
-        bool deletes_pointer() const { return _ptr.get_deleter().deletes_pointer(); }
-        void set_deletes_pointer(bool deletes_pointer = true) {
+        void disable_delete() override { _ptr.get_deleter().set_deletes_pointer(false); }
+        void enable_delete() override { _ptr.get_deleter().set_deletes_pointer(true); }
+        bool deletes_pointer() const override { return _ptr.get_deleter().deletes_pointer(); }
+        void set_deletes_pointer(bool deletes_pointer = true) override {
             _ptr.get_deleter().set_deletes_pointer(deletes_pointer);
         }
 

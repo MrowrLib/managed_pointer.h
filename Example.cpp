@@ -59,6 +59,15 @@ int main() {
     dog.reset();
     print("After reset");
 
+    // Untyped - can be deleted :)
+    print("Creating Scooby");
+    auto*               dogPtr3 = new Dog("Scooby");
+    untyped_managed_ptr scooby  = new managed_ptr<Dog>(dogPtr3);
+    print("After creating Scooby");
+    print("Deleting untyped Scooby");
+    delete scooby;
+    print("After delete");
+
     print("returning...");
     return 0;
 }

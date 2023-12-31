@@ -20,6 +20,7 @@ A generic pointer class which can be used to manage the memory ownership of a po
 - Non-copyable (_requires move semantics_)
 - Wraps an underlying `unique_ptr`
 - The underlying pointer can be disabled from being deleted
+- Type-erased `untyped_managed_ptr` is also available
 
 ## Installation
 
@@ -155,6 +156,60 @@ auto ptr = make_managed<Dog>("Rover");
 
 // Check if the underlying pointer is configured for deletion
 ptr.deletes_pointer();
+```
+
+### `untyped_managed_ptr`
+
+If you want to make a collection of `managed_ptr` with different types, you can use `untyped_managed_ptr`.
+
+```cpp
+std::vector<untyped_managed_ptr> pointers;
+
+pointers.push_back(new managed_ptr<Dog>("Rover"));
+pointers.push_back(new managed_ptr<Cat>("Mittens"));
+```
+
+A `untyped_managed_ptr` supports the same interface for managing ownership of the internal pointer.
+
+```cpp
+untyped_managed_ptr ptr = new managed_ptr<Dog>("Rover");
+
+// Do not delete the underlying pointer when the managed_ptr is destroyed
+ptr.disable_delete();
+
+// Delete the underlying pointer when the managed_ptr is destroyed
+ptr.enable_delete();
+```
+
+#### `void_ptr()`
+
+To get the underlying pointer as a `void*`, use `void_ptr()`.
+
+```cpp
+untyped_managed_ptr ptr = new managed_ptr<Dog>("Rover");
+
+void* internalPointer = ptr.void_ptr();
+```
+
+#### `as<T*>()`
+
+To get the underlying pointer as a `T*`, use `as<T>()`.
+
+```cpp
+untyped_managed_ptr ptr = new managed_ptr<Dog>("Rover");
+
+// Note: you specify the exact type, so Dog* with a *
+Dog* internalPointer = ptr.as<Dog*>();
+```
+
+##### `as<T>()` auto-dereference
+
+If you provide a type which is not a pointer to `as<T>()`, the `untyped_managed_ptr` will attempt to auto-dereference the underlying pointer.
+
+```cpp
+untyped_managed_ptr ptr = new managed_ptr<int>(69);
+
+int number = ptr.as<int>();
 ```
 
 ## License
