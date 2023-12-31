@@ -41,7 +41,7 @@ int main() {
 
     auto* dogPtr = new Dog("Spike");
     print("Creating Spike");
-    dog = make_managed<Dog>(dogPtr);
+    dog = managed_ptr<Dog>(dogPtr);
     print("After creating Spike");
     dog.reset();
     print("After reset");
